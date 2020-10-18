@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f39ef3f6-c59c-4862-9b38-b58b4ac94dae" name="Default Changelist" comment="connect Auth with backend">
+      <change beforePath="$PROJECT_DIR$/src/individualPage/AdminPage/components/Filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/individualPage/AdminPage/components/Filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/individualPage/AdminPage/components/UserTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/individualPage/AdminPage/components/UserTable.js" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="dev" />
+        <entry key="$PROJECT_DIR$" value="ilyas" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1gMTkay4f6QondUsFuvnrfeOXFj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/images" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="E:\Диск   F\WeStorm\WebStorm 2019.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="I:\Rec\RecruitingAgency\agency-app\src\images" />
+      <recent name="I:\Rec\RecruitingAgency\agency-app\src\cssForIndividualPage" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="I:\Rec\RecruitingAgency\agency-app\src\individualPage\Payment" />
+      <recent name="I:\Rec\RecruitingAgency\agency-app\src\individualPage\SysAdminPage" />
+      <recent name="I:\Rec\RecruitingAgency\agency-app\src\individualPage" />
+      <recent name="E:\Чертежи\agency-app\src\individualPage" />
+      <recent name="I:\Java_Projects\RecruitingAgency\recruiting_agency\src\individualPage" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/recruiting_agency/public/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.build" />
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f39ef3f6-c59c-4862-9b38-b58b4ac94dae" name="Default Changelist" comment="" />
+      <created>1597923606446</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597923606446</updated>
+      <workItem from="1597923615240" duration="10325000" />
+      <workItem from="1598011509561" duration="44168000" />
+      <workItem from="1598178976275" duration="123521000" />
+      <workItem from="1599591567267" duration="457000" />
+      <workItem from="1599592322802" duration="250000" />
+      <workItem from="1599593906416" duration="426000" />
+      <workItem from="1599860090992" duration="17000" />
+      <workItem from="1599860248818" duration="5815000" />
+      <workItem from="1600008258849" duration="39411000" />
+      <workItem from="1600513903694" duration="36577000" />
+      <workItem from="1600634049968" duration="3814000" />
+      <workItem from="1600719340477" duration="6596000" />
+      <workItem from="1600766658679" duration="5106000" />
+      <workItem from="1600783432407" duration="16616000" />
+      <workItem from="1600855716680" duration="1356000" />
+      <workItem from="1600882157301" duration="50833000" />
+      <workItem from="1601226101862" duration="206000" />
+      <workItem from="1601584277334" duration="46824000" />
+      <workItem from="1601908349378" duration="57649000" />
+      <workItem from="1602160107091" duration="32153000" />
+      <workItem from="1602340522333" duration="11445000" />
+      <workItem from="1602438326418" duration="37184000" />
+      <workItem from="1602591392385" duration="87085000" />
+      <workItem from="1602838898132" duration="127000" />
+    </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1600008537110</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600008537110</updated>
+    </task>
+    <task id="LOCAL-00002" summary="test">
+      <created>1600009327387</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600009327387</updated>
+    </task>
+    <task id="LOCAL-00003" summary="for yaroslav">
+      <created>1600115817730</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600115817731</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add checkbox dropdown list">
+      <created>1600600852970</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600600852970</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add checkbox dropdown list2">
+      <created>1600601410406</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600601410406</updated>
+    </task>
+    <task id="LOCAL-00006" summary="test5">
+      <created>1600770208784</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600770208784</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add update and create user">
+      <created>1600814497121</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600814497121</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fixed bugs">
+      <created>1600886893358</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600886893358</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add styles to the modal">
+      <created>1600986992732</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1600986992732</updated>
+    </task>
+    <task id="LOCAL-00010" summary="connect Auth with backend">
+      <created>1601663037731</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1601663037787</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <MESSAGE value="for yaroslav" />
+    <MESSAGE value="add checkbox dropdown list" />
+    <MESSAGE value="add checkbox dropdown list2" />
+    <MESSAGE value="test5" />
+    <MESSAGE value="add update and create user" />
+    <MESSAGE value="fixed bugs" />
+    <MESSAGE value="add styles to the modal" />
+    <MESSAGE value="connect Auth with backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="connect Auth with backend" />
+  </component>
+</project>

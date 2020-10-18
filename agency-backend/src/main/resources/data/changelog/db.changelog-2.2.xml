@@ -1,0 +1,113 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="now" value="now()" dbms="postgresql"/>
+    <changeSet id="4" author="Maria">
+
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="role_id" valueNumeric="4"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="role_id" valueNumeric="5"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="role_id" valueNumeric="6"/>
+        </insert>
+        <insert tableName="statuses">
+            <column name="name" value="NOT REVIEWED"/>
+            <column name="description" value="Document create but not been reviewed"/>
+        </insert>
+
+        <insert tableName="statuses">
+            <column name="name" value="CONSIDERED"/>
+            <column name="description" value="Document is being considered"/>
+        </insert>
+
+        <insert tableName="statuses">
+            <column name="name" value="ACCEPTED"/>
+            <column name="description" value="Document has been accepted"/>
+        </insert>
+
+        <insert tableName="statuses">
+            <column name="name" value="REJECTED"/>
+            <column name="description" value="Document has not been accepted"/>
+        </insert>
+        <insert tableName="statuses">
+            <column name="name" value="CANCELED"/>
+            <column name="description" value="Document has not been accepted"/>
+        </insert>
+        <insert tableName="profession">
+            <column name="name" value="Programmer"/>
+        </insert>
+        <insert tableName="profession">
+            <column name="name" value="Manager"/>
+        </insert>
+        <insert tableName="profession">
+            <column name="name" value="Lector"/>
+        </insert>
+        <insert tableName="employer_application">
+            <column name="agency_id" valueNumeric="1"/>
+            <column name="price" valueNumeric="0"/>
+            <column name="employer_id" valueNumeric="1"/>
+            <column name="profession_id" valueNumeric="3"/>
+            <column name="salary" valueNumeric="400"/>
+            <column name="employment_type_id" valueNumeric="1"/>
+            <column name="experience_id" value="1"/>
+            <column name="age_restriction_id" value="1"/>
+            <column name="creation_date" valueDate="2020-09-11"/>
+            <column name="end_date" valueDate="2021-08-11"/>
+            <column name="status_id" valueNumeric="2"/>
+            <column name="country_id" valueNumeric="1"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="address_id" valueNumeric="1"/>
+            <column name="comment" value="Comment"/>
+        </insert>
+        <insert tableName="employer_application">
+            <column name="agency_id" valueNumeric="1"/>
+            <column name="employer_id" valueNumeric="1"/>
+            <column name="profession_id" valueNumeric="2"/>
+            <column name="price" valueNumeric="400"/>
+            <column name="salary" valueNumeric="200"/>
+            <column name="employment_type_id" valueNumeric="1"/>
+            <column name="experience_id" value="3"/>
+            <column name="age_restriction_id" value="2"/>
+            <column name="expert_personal_name" value="Ilya"/>
+            <column name="creation_date" valueDate="2020-08-11"/>
+            <column name="end_date" valueDate="2022-08-11"/>
+            <column name="status_id" valueNumeric="4"/>
+            <column name="country_id" valueNumeric="1"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="address_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="agency_employee_contract">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="agency_id" valueNumeric="1"/>
+            <column name="min_salary" valueNumeric="100"/>
+            <!--            <column name="price_usd" valueNumeric="20"/>-->
+            <column name="compensation" valueNumeric="80"/>
+            <column name="creation_date" valueDate="2020-08-11"/>
+            <column name="end_date" valueDate="2021-08-11"/>
+            <column name="is_deleted" valueBoolean="1"/>
+            <column name="name" value="Maria"/>
+            <column name="surname" value="Zotova"/>
+            <column name="experience_id" valueNumeric="1"/>
+            <column name="birth_date" valueDate="1998-11-25"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="address_id" valueNumeric="1"/>
+            <column name="passport" value="HB1123231"/>
+            <column name="email" value="mashka_zotov@mail.ru"/>
+            <column name="telephone_number" value="3333333333"/>
+            <column name="profession_id" valueNumeric="2"/>
+            <column name="account_usd" valueNumeric="400"/>
+            <column name="status_id" valueNumeric="2"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

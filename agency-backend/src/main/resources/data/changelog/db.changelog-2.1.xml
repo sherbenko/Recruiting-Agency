@@ -1,0 +1,299 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="now" value="now()" dbms="postgresql"/>
+    <changeSet  id="3"  author="Tim">
+
+        <createTable tableName="question_types">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+        <insert tableName="question_types">
+            <column name="name" value="OPEN"></column>
+        </insert>
+        <insert tableName="question_types">
+            <column name="name" value="CHECKBOXES"></column>
+        </insert>
+
+        <createTable tableName="questions">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="name" type="varchar(1000)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="question_type_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_questions_question_types" references="question_types(id)"></constraints>
+            </column>
+            <column name="answer" type="varchar(1000)">
+            </column>
+        </createTable>
+        <insert tableName="questions">
+            <column name="name" value="Lets speak about access levels in Java"></column>
+            <column name="question_type_id" valueNumeric="1"></column>
+            <column name="answer" valueNumeric="4"></column>
+        </insert>
+        <insert tableName="questions">
+            <column name="name" value="How many access levels in Java"></column>
+            <column name="question_type_id" valueNumeric="2"></column>
+            <column name="answer" valueNumeric="4"></column>
+        </insert>
+
+        <createTable tableName="question_variants">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="question_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_question_variants_questions" references="questions(id)"></constraints>
+            </column>
+            <column name="label" type="varchar(100)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="name" type="varchar(1000)">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+        <insert tableName="question_variants">
+            <column name="question_id" valueNumeric="2"></column>
+            <column name="label" value="a"></column>
+            <column name="name" value="3"></column>
+        </insert>
+        <insert tableName="question_variants">
+            <column name="question_id" valueNumeric="2"></column>
+            <column name="label" value="b"></column>
+            <column name="name" value="4"></column>
+        </insert>
+        <insert tableName="question_variants">
+            <column name="question_id" valueNumeric="2"></column>
+            <column name="label" value="c"></column>
+            <column name="name" value="5"></column>
+        </insert>
+        <insert tableName="question_variants">
+            <column name="question_id" valueNumeric="2"></column>
+            <column name="label" value="d"></column>
+            <column name="name" value="6"></column>
+        </insert>
+
+        <createTable tableName="interview_statuses">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+        <insert tableName="interview_statuses">
+            <column name="name" value="WAITING APPROVE BY EXPERT AND EMPLOYEE"></column>
+        </insert>
+        <insert tableName="interview_statuses">
+            <column name="name" value="WAITING APPROVE BY EXPERT"></column>
+        </insert>
+        <insert tableName="interview_statuses">
+            <column name="name" value="WAITING APPROVE BY EMPLOYEE"></column>
+        </insert>
+        <insert tableName="interview_statuses">
+            <column name="name" value="IN PROGRESS"></column>
+        </insert>
+        <insert tableName="interview_statuses">
+            <column name="name" value="FINISHED"></column>
+        </insert>
+        <insert tableName="interview_statuses">
+            <column name="name" value="CANCELED"></column>
+        </insert>
+        <insert tableName="interview_statuses">
+            <column name="name" value="APPROVED"></column>
+        </insert>
+
+        <createTable tableName="experts">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="user_id" type="bigint" >
+                <constraints nullable="false" unique="true" foreignKeyName="fk_experts_users" references="users(id)"></constraints>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+
+        <createTable tableName="managers">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="user_id" type="bigint" >
+                <constraints nullable="false" unique="true" foreignKeyName="fk_managers_users" references="users(id)"></constraints>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+
+        <createTable tableName="interviews">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="agency_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_interviews_agencies" references="agencies(id)"></constraints>
+            </column>
+            <column name="employer_application_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_interviews_employer_application" references="employer_application(id)"></constraints>
+            </column>
+            <column name="employee_contract_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_interviews_employee_contract" references="agency_employee_contract(id)"></constraints>
+            </column>
+            <column name="manager_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_interviews_managers" references="managers(id)"></constraints>
+            </column>
+            <column name="expert_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_interviews_experts" references="experts(id)"></constraints >
+            </column>
+            <column name="start_date_time" type="timestamp">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="end_date_time" type="timestamp">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="interview_status_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_interviews_interview_statuses" references="interview_statuses"></constraints>
+            </column>
+            <column name="manager_comment" type="varchar(1000)">
+            </column>
+            <column name="expert_comment" type="varchar(1000)">
+            </column>
+        </createTable>
+
+        <createTable tableName="interview_questions">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"></constraints>
+            </column>
+            <column name="interview_id" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="question_id" type="bigint">
+                <constraints nullable="false"></constraints>
+            </column>
+
+        </createTable>
+        <insert tableName="interview_questions">
+            <column name="interview_id" valueNumeric="1"></column>
+            <column name="question_id" valueNumeric="1"/>
+        </insert>
+
+
+<!-- managers -->
+        <insert tableName="users">
+            <column name="email" value="manager.anton@gmail.com"></column>
+            <column name="password" value="$2a$12$eIaHQlyj/kXLHLpf0p6TbecJbgvs33JT3wa0HhEEFMdn8EGMdOEWC"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+            <column name="is_deactivated" valueBoolean="1"></column>
+            <column name="is_deleted" valueBoolean="0"></column>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="4"></column>
+            <column name="role_id" valueNumeric="7"></column>
+        </insert>
+        <insert tableName="managers">
+            <column name="user_id" valueNumeric="4"></column>
+            <column name="name" value="Anton Arkhipets"></column>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="manager.ivan@gmail.com"></column>
+            <column name="password" value="$2a$12$eIaHQlyj/kXLHLpf0p6TbecJbgvs33JT3wa0HhEEFMdn8EGMdOEWC"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+            <column name="is_deactivated" valueBoolean="1"></column>
+            <column name="is_deleted" valueBoolean="0"></column>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="5"></column>
+            <column name="role_id" valueNumeric="7"></column>
+        </insert>
+        <insert tableName="managers">
+            <column name="user_id" valueNumeric="5"></column>
+            <column name="name" value="Ivan Susanin"></column>
+        </insert>
+
+
+<!-- experts -->
+        <insert tableName="users">
+            <column name="email" value="expert.dima@gmail.com"></column>
+            <column name="password" value="$2a$12$eIaHQlyj/kXLHLpf0p6TbecJbgvs33JT3wa0HhEEFMdn8EGMdOEWC"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+            <column name="is_deactivated" valueBoolean="1"></column>
+            <column name="is_deleted" valueBoolean="0"></column>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="6"></column>
+            <column name="role_id" valueNumeric="8"></column>
+        </insert>
+        <insert tableName="experts">
+            <column name="user_id" valueNumeric="6"></column>
+            <column name="name" value="Dmitri Glukhovski"></column>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="expert.ivan@gmail.com"></column>
+            <column name="password" value="$2a$12$eIaHQlyj/kXLHLpf0p6TbecJbgvs33JT3wa0HhEEFMdn8EGMdOEWC"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+            <column name="is_deactivated" valueBoolean="1"></column>
+            <column name="is_deleted" valueBoolean="0"></column>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="7"></column>
+            <column name="role_id" valueNumeric="8"></column>
+        </insert>
+        <insert tableName="experts">
+            <column name="user_id" valueNumeric="7"></column>
+            <column name="name" value="Ivan Bunin"></column>
+        </insert>
+
+        <insert tableName="users">
+            <column name="email" value="expert.serg@gmail.com"></column>
+            <column name="password" value="$2a$12$eIaHQlyj/kXLHLpf0p6TbecJbgvs33JT3wa0HhEEFMdn8EGMdOEWC"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+            <column name="is_deactivated" valueBoolean="1"></column>
+            <column name="is_deleted" valueBoolean="0"></column>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="8"></column>
+            <column name="role_id" valueNumeric="8"></column>
+        </insert>
+        <insert tableName="experts">
+            <column name="user_id" valueNumeric="8"></column>
+            <column name="name" value="Sergei Esenin"></column>
+        </insert>
+<!--interviews -->
+        <insert tableName="interviews">
+            <column name="agency_id" valueNumeric="1"></column>
+            <column name="employer_application_id" valueNumeric="1"></column>
+            <column name="employee_contract_id" valueNumeric="1"></column>
+            <column name="manager_id" valueNumeric="1"></column>
+            <column name="expert_id" valueNumeric="1"></column>
+            <column name="start_date_time" valueDate="2020-10-10 15:00:00.000000"></column>
+            <column name="end_date_time" valueDate="2020-10-10 17:00:00.000000"></column>
+            <column name="interview_status_id" valueNumeric="1"></column>
+            <column name="manager_comment" value="Manager's comment"></column>
+            <column name="expert_comment" value="Expert's comment"></column>
+        </insert>
+
+
+
+
+
+
+
+
+
+
+
+
+    </changeSet>
+
+</databaseChangeLog>

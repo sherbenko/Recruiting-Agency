@@ -1,0 +1,749 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="now" value="now()" dbms="postgresql"/>
+    <changeSet id="2" author="Ilya">
+
+
+        <!--Test-->
+
+
+        <createTable tableName="countries">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="countries">
+            <column name="name" value="Belarus"></column>
+
+        </insert>
+        <insert tableName="countries">
+            <column name="name" value="Ukraine"></column>
+
+        </insert>
+
+        <insert tableName="countries">
+            <column name="name" value="Germany"></column>
+
+        </insert>
+
+
+        <!--        <createTable tableName="regions">-->
+        <!--            <column autoIncrement="true" name="id" type="BIGSERIAL">-->
+        <!--                <constraints nullable="false" primaryKey="true"/>-->
+        <!--            </column>-->
+        <!--            <column name="name" type="varchar(50)">-->
+        <!--                <constraints nullable="false" />-->
+        <!--            </column>-->
+        <!--            <column name="countries_id" type="bigint">-->
+        <!--                <constraints nullable="false" foreignKeyName="fk_regions_countries" references="countries(id)"/>-->
+        <!--            </column>-->
+        <!--        </createTable>-->
+        <!--        <insert tableName="regions">-->
+        <!--            <column name="name" value="Gomel"></column>-->
+        <!--            <column name="countries_id" valueNumeric="1"></column>-->
+        <!--        </insert>-->
+
+        <createTable tableName="cities">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="countries_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_cities_countries" references="countries(id)"/>
+            </column>
+        </createTable>
+        <insert tableName="cities">
+            <column name="name" value="Minsk"></column>
+            <column name="countries_id" valueNumeric="1"></column>
+
+        </insert>
+        <insert tableName="cities">
+            <column name="name" value="Gomel"></column>
+            <column name="countries_id" valueNumeric="1"></column>
+
+        </insert>
+        <insert tableName="cities">
+            <column name="name" value="Mozyr"></column>
+            <column name="countries_id" valueNumeric="1"></column>
+
+        </insert>
+        <insert tableName="cities">
+            <column name="name" value="Kiev"></column>
+            <column name="countries_id" valueNumeric="2"></column>
+
+        </insert>
+
+        <insert tableName="cities">
+            <column name="name" value="Odesa"></column>
+            <column name="countries_id" valueNumeric="2"></column>
+
+        </insert>
+        <insert tableName="cities">
+            <column name="name" value="Dnipro"></column>
+            <column name="countries_id" valueNumeric="2"></column>
+
+        </insert>
+        <insert tableName="cities">
+            <column name="name" value="Berlin"></column>
+            <column name="countries_id" valueNumeric="3"></column>
+
+        </insert>
+        <insert tableName="cities">
+            <column name="name" value="Hamburg"></column>
+            <column name="countries_id" valueNumeric="3"></column>
+
+        </insert>
+
+
+        <createTable tableName="addresses">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="street" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="building" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="apartment" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="addresses">
+            <column name="street" value="Surganova"></column>
+            <column name="building" value="37"></column>
+            <column name="apartment" value="106"></column>
+
+        </insert>
+
+
+        <createTable tableName="agencies">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints unique="true"/>
+            </column>
+            <column name="address_id" type="bigint">
+                <constraints foreignKeyName="fk_agencies_addresses" references="addresses(id)"/>
+            </column>
+            <column name="city_id" type="bigint">
+                <constraints foreignKeyName="fk_agencies_cities" references="cities(id)"/>
+            </column>
+            <column name="regular_payment" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deposit" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="date_activate" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="is_deleted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="agencies">
+            <column name="name" value="TUT.BY"></column>
+            <column name="address_id" valueNumeric="1"></column>
+            <column name="city_id" valueNumeric="1"></column>
+
+            <column name="regular_payment" valueNumeric="100"></column>
+            <column name="deposit" valueNumeric="200"></column>
+<!--            <column name="date_activate" valueDate="1" ></column>-->
+            <column name="is_deleted" valueBoolean="1"></column>
+        </insert>
+
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="email" type="varchar(50)">
+                <constraints unique="true"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints/>
+            </column>
+            <column name="agency_id" type="bigint">
+                <constraints foreignKeyName="fk_user_agencies" references="agencies(id)"/>
+            </column>
+            <column name="is_deactivated" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+
+
+        </createTable>
+        <addDefaultValue tableName="users" columnName="is_deleted" defaultValueBoolean="true"/>
+
+        <insert tableName="users">
+
+            <column name="email" value="mail@gmail.com"></column>
+            <column name="password" value="$2a$12$eIaHQlyj/kXLHLpf0p6TbecJbgvs33JT3wa0HhEEFMdn8EGMdOEWC"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+            <column name="is_deactivated" valueBoolean="1"></column>
+            <column name="is_deleted" valueBoolean="1"></column>
+        </insert>
+        <insert tableName="users">
+            <column name="email" value="sysadmin@sysadmin.com"></column>
+            <column name="password" value="$2a$12$eIaHQlyj/kXLHLpf0p6TbecJbgvs33JT3wa0HhEEFMdn8EGMdOEWC"></column>
+            <!--            <column name="agency_id" valueNumeric="1"></column>-->
+            <column name="is_deactivated" valueBoolean="1"></column>
+            <column name="is_deleted" valueBoolean="1"></column>
+        </insert>
+        <insert tableName="users">
+            <column name="email" value="admin@admin.com"></column>
+            <column name="password" value="$2a$12$eIaHQlyj/kXLHLpf0p6TbecJbgvs33JT3wa0HhEEFMdn8EGMdOEWC"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+            <column name="is_deactivated" valueBoolean="1"></column>
+            <column name="is_deleted" valueBoolean="1"></column>
+        </insert>
+
+        <createTable tableName="agencies_transaction">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="sum" type="double">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="agency_id" type="bigint">
+                <constraints foreignKeyName="fk_agencies_transaction_agencies" references="agencies(id)"/>
+            </column>
+        </createTable>
+        <insert tableName="agencies_transaction">
+            <column name="date" valueDate="${now}"></column>
+            <column name="sum" valueNumeric="100"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+        </insert>
+        <insert tableName="agencies_transaction">
+            <column name="date" valueDate="${now}"></column>
+            <column name="sum" valueNumeric="140"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+        </insert>
+        <insert tableName="agencies_transaction">
+            <column name="date" valueDate="${now}"></column>
+            <column name="sum" valueNumeric="900"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+        </insert>
+        <insert tableName="agencies_transaction">
+            <column name="date" valueDate="${now}"></column>
+            <column name="sum" valueNumeric="1030"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+        </insert>
+        <insert tableName="agencies_transaction">
+            <column name="date" valueDate="${now}"></column>
+            <column name="sum" valueNumeric="300"></column>
+            <column name="agency_id" valueNumeric="1"></column>
+        </insert>
+
+        <createTable tableName="roles">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <insert tableName="roles">
+            <column name="name" value="SYSADMIN"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ADMIN"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="OWNER"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="EMPLOYER"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="EMPLOYEE"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="SECRETARY"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="MANAGER"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="EXPERT"></column>
+        </insert>
+
+        <createTable tableName="user_roles">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_roles_users" references="users(id)"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_roles_roles" references="roles(id)"/>
+            </column>
+        </createTable>
+
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="1"></column>
+            <column name="role_id" valueNumeric="1"></column>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="2"></column>
+            <column name="role_id" valueNumeric="1"></column>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="3"></column>
+            <column name="role_id" valueNumeric="2"></column>
+        </insert>
+
+        <createTable tableName="agency_contract_types">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="agency_contract_types">
+            <column name="name" value="Monthly"/>
+            <column name="description" value="Fix payment every month"/>
+        </insert>
+        <insert tableName="agency_contract_types">
+            <column name="name" value="Quarterly"/>
+            <column name="description" value="Fix payment every quart"/>
+        </insert>
+        <insert tableName="agency_contract_types">
+            <column name="name" value="Personal"/>
+            <column name="description" value="Not fix payment for each found employee"/>
+        </insert>
+<!--        <createTable tableName="files">-->
+<!--            <column autoIncrement="true" name="id" type="bigserial">-->
+<!--                <constraints nullable="false" primaryKey="true"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="varchar(50)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="file_path" type="varchar(50)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="creation_date" type="date">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column name="is_deleted" type="boolean">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--        </createTable>-->
+<!--        &lt;!&ndash;Ilya&ndash;&gt;-->
+<!--        <insert tableName="files">-->
+<!--            <column name="name" value="file 1"></column>-->
+<!--            <column name="file_path" value="../path"></column>-->
+<!--            <column name="creation_date" valueDate="2020-08-11"></column>-->
+<!--            <column name="is_deleted" valueBoolean="1"></column>-->
+<!--        </insert>-->
+
+        <createTable tableName="agency_employer_contracts">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="contract_type_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_agency_employer_contracts_agency_contract_types"
+                             references="agency_contract_types(id)"/>
+            </column>
+            <column name="file" type="varchar(100)">а
+                <constraints nullable="false"/>
+            </column>
+            <column name="daily_payment" type="money">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contract_creation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contract_end_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_suspended" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="agency_employer_contracts">
+            <column name="contract_type_id" valueNumeric="3"></column>
+            <column name="file" valueNumeric="1"></column>
+            <column name="daily_payment" valueNumeric="0"></column>
+            <column name="contract_creation_date" valueDate="2020-08-11"></column>
+            <column name="contract_end_date" valueDate="2020-08-11"></column>
+            <column name="is_suspended" valueBoolean="1"></column>
+            <column name="is_deleted" valueBoolean="1"></column>
+        </insert>
+        <createTable tableName="employer">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="agency_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_agencies" references="agencies(id)"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_users" references="users(id)"/>
+            </column>
+            <!--            !!!!!!-->
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employer_agency_contract_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_agency_employer_contracts"
+                             references="agency_employer_contracts(id)"/>
+            </column>
+        </createTable>
+        <insert tableName="employer">
+            <column name="agency_id" valueNumeric="1"></column>
+            <column name="user_id" valueNumeric="1"></column>
+            <column name="name" value="Ilya"></column>
+            <column name="employer_agency_contract_id" valueNumeric="1"></column>
+        </insert>
+        <createTable tableName="profession">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="profession">
+            <column name="name" value="Teacher"></column>
+        </insert>
+
+        <createTable tableName="employment_type">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="employment_type">
+            <column name="name" value="employment_type"></column>
+        </insert>
+
+        <createTable tableName="statuses">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="statuses">
+            <column name="name" value="ACTIVE"/>
+            <column name="description" value="description"/>
+        </insert>
+
+        <createTable tableName="experience">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="experience">
+            <column name="name" value="Up to 1 year"/>
+        </insert>
+        <insert tableName="experience">
+            <column name="name" value="1 - 3 years"/>
+        </insert>
+        <insert tableName="experience">
+            <column name="name" value="3 - 5 years"/>
+        </insert>
+        <insert tableName="experience">
+            <column name="name" value="5 - 8 years"/>
+        </insert>
+        <insert tableName="experience">
+            <column name="name" value="Over 8 years"/>
+        </insert>
+        <createTable tableName="age_restriction">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="age_restriction">
+            <column name="name" value="-"/>
+        </insert>
+        <insert tableName="age_restriction">
+            <column name="name" value="Up to 30 years"/>
+        </insert>
+        <insert tableName="age_restriction">
+            <column name="name" value="Up to 40 years"/>
+        </insert>
+        <createTable tableName="employer_application">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="price" type="numeric(38)"/>
+            <column name="agency_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_agencies"
+                             references="agencies(id)"/>
+            </column>
+            <column name="employer_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_employer"
+                             references="employer(id)"/>
+            </column>
+            <column name="profession_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_profession"
+                             references="profession(id)"/>
+            </column>
+            <!--money or numeric-->
+            <column name="salary" type="numeric(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employment_type_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_employment_type"
+                             references="employment_type(id)"/>
+            </column>
+            <column name="experience_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_experience"
+                             references="experience(id)"/>
+            </column>
+            <column name="age_restriction_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_age_restriction"
+                             references="age_restriction(id)"/>
+            </column>
+            <column name="expert_personal_name" type="varchar(100)"/>
+            <column name="creation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_statuses"
+                             references="statuses(id)"/>
+            </column>
+            <column name="country_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_countries" references="countries(id)"/>
+            </column>
+            <column name="city_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_cities" references="cities(id)"/>
+            </column>
+            <column name="address_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_addresses"
+                             references="addresses(id)"/>
+            </column>
+            <column name="comment" type="varchar(1000)"/>
+            <column name="is_deleted" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="employer_application">
+            <column name="agency_id" valueNumeric="1"/>
+            <column name="employer_id" valueNumeric="1"/>
+            <column name="profession_id" valueNumeric="1"/>
+            <column name="price" valueNumeric="200"/>
+            <column name="salary" valueNumeric="200"/>
+            <column name="employment_type_id" valueNumeric="1"/>
+            <column name="experience_id" value="2"/>
+            <column name="age_restriction_id" value="1"/>
+            <column name="expert_personal_name" value="Ilya"/>
+            <column name="creation_date" valueDate="2020-08-11"/>
+            <column name="end_date" valueDate="2020-08-11"/>
+            <column name="status_id" valueNumeric="1"/>
+            <column name="country_id" valueNumeric="1"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="address_id" valueNumeric="1"/>
+            <column name="comment" value="Comment"/>
+        </insert>
+
+
+
+        <createTable tableName="agency_employee_contract">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="fk_agency_employee_contract_users"
+                             references="users(id)"/>
+            </column>
+            <column name="agency_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_agency_employee_contract_agencies"
+                             references="agencies(id)"/>
+            </column>
+            <column name="min_salary" type="numeric(38)">
+                <constraints nullable="false"/>
+            </column>
+<!--            <column name="price_usd" type="numeric(38)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+            <column name="compensation" type="numeric(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="end_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="experience_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_agency_employee_contract_experience"
+                             references="experience(id)"/>
+            </column>
+            <column name="birth_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_agency_employee_contract_cities"
+                             references="cities(id)"/>
+            </column>
+            <column name="address_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_agency_employee_contract_addresses"
+                             references="addresses(id)"/>
+            </column>
+            <column name="passport" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telephone_number" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profession_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_agency_employee_contract_profession"
+                             references="profession(id)"/>
+            </column>
+            <column name="account_usd" type="money">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_agency_employee_contract_statuses"
+                             references="statuses(id)"/>
+            </column>
+        </createTable>
+        <insert tableName="agency_employee_contract">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="agency_id" valueNumeric="1"/>
+            <column name="min_salary" valueNumeric="100"/>
+<!--            <column name="price_usd" valueNumeric="20"/>-->
+            <column name="compensation" valueNumeric="80"/>
+            <column name="creation_date" valueDate="2020-08-11"/>
+            <column name="end_date" valueDate="2021-08-11"/>
+            <column name="is_deleted" valueBoolean="1"/>
+            <column name="name" value="Ilya"/>
+            <column name="surname" value="Sherbenko"/>
+            <column name="experience_id" valueNumeric="3"/>
+            <column name="birth_date" valueDate="2020-08-11"/>
+            <column name="city_id" valueNumeric="1"/>
+            <column name="address_id" valueNumeric="1"/>
+            <column name="passport" value="HB1123231"/>
+            <column name="email" value="i_shherbenko@mail.ru"/>
+            <column name="telephone_number" value="3333333333"/>
+            <column name="profession_id" valueNumeric="1"/>
+            <column name="account_usd" valueNumeric="400"/>
+            <column name="status_id" valueNumeric="1"/>
+        </insert>
+
+        <createTable tableName="employee_employment_type">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="agency_employee_contract_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employee_employment_type_agency_employee_contract"
+                             references="agency_employee_contract(id)"/>
+            </column>
+            <column name="employee_type_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employee_employment_type_employment_type"
+                             references="employment_type(id)"/>
+            </column>
+        </createTable>
+        <insert tableName="employee_employment_type">
+            <column name="agency_employee_contract_id" valueNumeric="1"></column>
+            <column name="employee_type_id" valueNumeric="1"></column>
+        </insert>
+
+        <createTable tableName="features">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="features">
+            <column name="name" value="feature name"></column>
+        </insert>
+
+        <createTable tableName="employee_contract_feature">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="employee_contract_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employee_contract_feature_agency_employee_contract"
+                             references="agency_employee_contract(id)"/>
+            </column>
+            <column name="feature_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employee_contract_feature_features"
+                             references="features(id)"/>
+            </column>
+        </createTable>
+        <insert tableName="employee_contract_feature">
+            <column name="employee_contract_id" valueNumeric="1"></column>
+            <column name="feature_id" valueNumeric="1"></column>
+        </insert>
+
+        <createTable tableName="employer_application_feature">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="employer_application_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_feature_employer_application"
+                             references="employer_application(id)"/>
+            </column>
+            <column name="feature_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employer_application_feature_features"
+                             references="features(id)"/>
+            </column>
+        </createTable>
+        <insert tableName="employer_application_feature">
+            <column name="employer_application_id" valueNumeric="1"></column>
+            <column name="feature_id" valueNumeric="1"></column>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

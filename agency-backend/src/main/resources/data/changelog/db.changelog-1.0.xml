@@ -1,0 +1,87 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet  id="1"  author="Tim">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <insert tableName="users">
+            <column name="company_id" valueNumeric="1"></column>
+            <column name="email" value="mail@gmail.com"></column>
+            <column name="password" value="$2a$12$eIaHQlyj/kXLHLpf0p6TbecJbgvs33JT3wa0HhEEFMdn8EGMdOEWC"></column>
+            <column name="is_deleted" valueBoolean="1"></column>
+        </insert>
+
+        <createTable tableName="roles">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <insert tableName="roles">
+            <column name="name" value="SYSADMIN"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ADMIN"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="OWNER"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="EMPLOYER"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="EMPLOYEE"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="SECRETARY"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="MANAGER"></column>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="EXPERT"></column>
+        </insert>
+
+        <createTable tableName="user_roles">
+            <column autoIncrement="true" name="id" type="bigserial">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_roles_users" references="users(id)"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_user_roles_roles" references="roles(id)"/>
+            </column>
+        </createTable>
+
+        <insert tableName="user_roles">
+            <column name="user_id" valueNumeric="1"></column>
+            <column name="role_id" valueNumeric="1"></column>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>
